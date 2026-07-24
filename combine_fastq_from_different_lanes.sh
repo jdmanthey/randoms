@@ -4,6 +4,7 @@ while read -r basename; do
 	cat ${basename}_*R2_* >> ../${basename}_R2.fastq.gz
 done < basenames.txt
 
+
 # alternative method with numbered individuals
 for i in {1..52}; do 
 	for j in $( ls ${i}_*R1* ); do
@@ -11,5 +12,15 @@ for i in {1..52}; do
   	for k in $( ls ${i}_*R2* ); do
  	cat $k >> /path/to/output/${i}_R2.fastq.gz; done
 done
+
+
+#alternative method when same file names in different folders
+for i in $(basename -a lane1/*fastq.gz); do 
+	echo $i;
+	cat lane1/$i >> $i;
+	cat lane2/$i >> $i;
+done
+
+
 
 
